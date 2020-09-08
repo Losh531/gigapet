@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Giga Clicker</title>
+    <link href="/style.css" rel="stylesheet" type="text/css" />
+    <script src="/gigaclicker.js"></script>
+    <script src="/script.js"></script>
+  </head>
+  <body>
+  <script>
+  function loadDoc(url) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("page").innerHTML = this.responseText;
+        history.pushState({},document.title,url)
+      }
+    };
+    xhttp.open("GET", url, true);
+    xhttp.send();
+  }
+  </script>
+  <div id="page">
+    <div class="container">
+    <!-- nav bar -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Menu</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript:loadDoc(`/gigaclicker.html`)">Giga Clicker</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript:loadDoc(`gigapet_jokes.html`)">Giga Jokes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript:loadDoc(`gigapet_facts.html`)">Giga Facts</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+      
+  <!-- end nav bar  -->
+    <div class="container bg-light p-3 my-3 rounded">
+      <div class="row">
+        <div class="col">
+          <h1>Giga Clicker</h1>
+        </div>
+        <div class="col">
+          <h1>Store</h1>
+        </div>
+        <div class="col">
+          <h1>News</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <img class="fit" id="gigapet-clicker" src="https://storage.googleapis.com/replit/images/1595976460588_a7ab4c0fb3630cc9d5849a4f9729e14c.png" width="200" onclick="clickPet();" ><br>
+          <h2 id="playerScore">Coins: 0</h2>
+          <h2 id="workers">Workers: 0</h2>
+          <p><button onclick="logOut();" class="btn btn-primary">Log Out</button></p>
+          <h2 id="info"></h2>
+        </div>
+        <!-- buttons go here -->
+        <div class="col">
+          <p><button onclick="buyBunny();" class="btn btn-primary">Bunny $10</button></p>
+          <p><button onclick="buyKitty();" class="btn btn-primary">Kitty $30</button></p>
+          <p><button onclick="buyZombie();" class="btn btn-primary">Zombie $50</button></p>
+          <p><button onclick="buyUnicorn();" class="btn btn-primary">Unicorn $80</button></p>
+          <p><button onclick="buyDragon();" class="btn btn-primary">Dragon $130</button></p>
+          <p><button onclick="buyLucas();" class="btn btn-primary">Losh $200</button></p>
+          <p><button onclick="buyExpertBunny();" class="btn btn-primary">Expert Bunny $250</button></p>
+          <p><button class="btn btn-primary">Bunny</button></p>
+        </div>
+        <div class="col" id="news">&nbsp;
+        </div>
+      </div> <!-- end row -->
+    </div>
+    </div>
+    </div>
+
+    <!-- Bootstrap and related -->
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+  </body>
+</html>
