@@ -1,2 +1,5 @@
-1. FIX
-2. hello
+NOTES ABOUT EXPRESS/NODE.JS
+
+1. To serve images, you need a "public" folder. 
+2. JS and CSS files can go there too
+3. Views folder is more for route endpoints.

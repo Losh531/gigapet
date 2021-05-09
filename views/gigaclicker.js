@@ -19,12 +19,15 @@ function logOut(){
   document.cookie = "score=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   window.location.reload()
 }
+function leaving(){
+  let response = fetch("/addtoscore?username=" + username + "&password=" + password + "&amount=" + score);  
+}
 var username = getCookie("username");
 var password = getCookie("password");
 if (username != "") {
    
 } else {
-window.location.assign("/signup.html")
+window.location.assign("/pick.html")
 }
 
 //let response = fetch("/checkUserScore?username=" + username + "?password=" + password);
@@ -49,14 +52,34 @@ xhttp.onreadystatechange = function() {
 };
 xhttp.open("GET", "/checkUserScore?username=" + username + "&password=" + password, true);
 xhttp.send();
-
-var bunnies = 0;
+var xhttp2 = new XMLHttpRequest();
+xhttp2.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     console.log(JSON.parse(xhttp2.responseText));
+      var jsonFile = JSON.parse(xhttp2.responseText)
+      document.cookie = "workers=" + jsonFile
+    
+    }
+};
+xhttp2.open("GET", "/getworkers?username=" + username + "&password=" + password, true);
+xhttp2.send();
+var bunnies = getCookie('workers')
 var autoClicker2 = 0;
 var autoClicker3 = 0;
 var score = getCookie('score')
 console.log(score)
 var newsArray = [];
-
+function autoWorkerStarter(amount){
+   setInterval(function(){ clickPet(); } , amount);
+   let response = fetch("/addworkers?username=" + username + "&password=" + password + "&amount=" + 10);
+}
+function autoWorkerStarterTwo(amount){
+   setInterval(function(){ clickPet(); } , amount);
+}
+var i;
+for (i = 0; i < bunnies; i++) {
+  autoWorkerStarterTwo(7000)
+}
 const news_items = [
   "RIP Jayden",
   "RIP Lucas",
@@ -71,16 +94,14 @@ const news_items = [
 
 function clickPet(){
   score++
-  let response = fetch("/addtoscore?username=" + username + "&password=" + password);
+  let response = fetch("/addtoscore?username=" + username + "&password=" + password + "&amount=" + score);
     // if HTTP-status is 200-299
   console.log("added to score")
 
   update();
 }
 
-function autoWorkerStarter(amount){
-   setInterval(function(){ clickPet(); } , amount);
-}
+
 
 function buyBunny() {
   console.log("You ")
@@ -211,10 +232,22 @@ function update(){
 };
 xhttp.open("GET", "/checkUserScore?username=" + username + "&password=" + password, true);
 xhttp.send();
+var xhttp2 = new XMLHttpRequest();
+xhttp2.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     console.log(JSON.parse(xhttp2.responseText));
+      var jsonFile = JSON.parse(xhttp2.responseText)
+      document.cookie = "workers=" + jsonFile
+    
+    }
+};
+xhttp2.open("GET", "/getworkers?username=" + username + "&password=" + password, true);
+xhttp2.send();
   console.log(jsonFile)
   console.log(document.cookie)
   document.getElementById("playerScore").innerHTML = "Coins: " + score
-  document.getElementById("workers").innerHTML = "Workers: " + bunnies;
+  document.getElementById("workers").innerHTML = "Workers: " + bunnies
+  
 
 //  else if (score > 45 && autoWorkerStarted2 == false) {
 //    autoWorkerStarted2 = true

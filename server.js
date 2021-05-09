@@ -16,6 +16,12 @@ app.get("/", (request, response) => {
 app.get("/gigaclicker.html", (request, response) => {
   response.sendFile(__dirname + "/gigaclicker.html");
 });
+app.get("/bunnies.jpg", (request, response) => {
+  response.sendFile(__dirname + "/bunnies.jpg");
+});
+app.get("/pick.html", (request, response) => {
+  response.sendFile(__dirname + "/views/pick.html");
+});
 app.get("/gigapet_facts.html", (request, response) => {
   response.sendFile(__dirname + "/gigapet_facts.html");
 });
@@ -47,7 +53,7 @@ app.get("/createuserindb", (request, response) => {
 var userName = request.query.username;
 var password = request.query.password;
 
-db.push(userName, {password: password, score: 0} ) 
+db.push(userName, {password: password, score: 0, workers: 0} ) 
  response.send(200) 
 });
 app.get("/checkUserScore", (request, response) => {
@@ -62,10 +68,28 @@ console.log(db.get(userName))
 app.get("/addtoscore", (request, response) => {
 var userName = request.query.username;
 var userPassword = request.query.password;
+var amount = request.query.amount
+ // if (userPassword === db.get(userName).password){
+  db.set((userName) + '.score', amount)
+ response.sendStatus(200)
+  //}  
+});
+app.get("/addworkers", (request, response) => {
+var userName = request.query.username;
+var userPassword = request.query.password;
 
  // if (userPassword === db.get(userName).password){
-  db.add((userName) + '.score', 1)
+  db.add((userName) + '.workers', 1)
  response.sendStatus(200)
+  //}  
+});
+app.get("/getworkers", (request, response) => {
+var userName = request.query.username;
+var userPassword = request.query.password;
+
+ // if (userPassword === db.get(userName).password){
+ 
+ response.json(db.get((userName) + '.workers'))
   //}  
 });
 app.get("/removefromscore", (request, response) => {
@@ -79,6 +103,6 @@ console.log(userPassword)
  //}  
 });
 // listen for requests :)
-const listener = app.listen(process.env.PORT, () => {
+const listener = app.listen(3000, () => {
   console.log("Your app is listening on port " + listener.address().port);
 });
